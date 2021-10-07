@@ -1,0 +1,116 @@
+Sender: LSF System <lsfadmin@eu-g3-040>
+Subject: Job 187216796: <python inference.py --device 0 --events_file_path /cluster/scratch/jzhong/fr_dataset/val/desk_fast.h5 --output_folder /cluster/scratch/jzhong/event_cnn_recon_ori --checkpoint_path pretrained/recon/reconstruction_model.pth> in cluster <euler> Done
+
+Job <python inference.py --device 0 --events_file_path /cluster/scratch/jzhong/fr_dataset/val/desk_fast.h5 --output_folder /cluster/scratch/jzhong/event_cnn_recon_ori --checkpoint_path pretrained/recon/reconstruction_model.pth> was submitted from host <eu-login-27> by user <jzhong> in cluster <euler> at Wed Oct  6 18:31:58 2021
+Job was executed on host(s) <eu-g3-040>, in queue <gpu.4h>, as user <jzhong> in cluster <euler> at Wed Oct  6 18:32:08 2021
+</cluster/home/jzhong> was used as the home directory.
+</cluster/home/jzhong/event_cnn_minimal> was used as the working directory.
+Started at Wed Oct  6 18:32:08 2021
+Terminated at Wed Oct  6 18:32:46 2021
+Results reported at Wed Oct  6 18:32:46 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python inference.py --device 0 --events_file_path /cluster/scratch/jzhong/fr_dataset/val/desk_fast.h5 --output_folder /cluster/scratch/jzhong/event_cnn_recon_ori --checkpoint_path pretrained/recon/reconstruction_model.pth
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   23.80 sec.
+    Max Memory :                                 3600 MB
+    Average Memory :                             2798.50 MB
+    Total Requested Memory :                     20000.00 MB
+    Delta Memory :                               16400.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                13
+    Run time :                                   42 sec.
+    Turnaround time :                            48 sec.
+
+The output (if any) follows:
+
+Loading checkpoint: pretrained/recon/reconstruction_model.pth ...
+Using skip: <function skip_sum at 0x2af171697a70>
+Using UpsampleConvLayer (slow, but no checkerboard artefacts)
+Kernel size 5
+Skip type sum
+norm none
+FlowNet(
+  (unetflow): UNetFlow(
+    (head): ConvLayer(
+      (conv2d): Conv2d(5, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    )
+    (encoders): ModuleList(
+      (0): RecurrentConvLayer(
+        (conv): ConvLayer(
+          (conv2d): Conv2d(32, 64, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2))
+        )
+        (recurrent_block): ConvLSTM(
+          (Gates): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+      (1): RecurrentConvLayer(
+        (conv): ConvLayer(
+          (conv2d): Conv2d(64, 128, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2))
+        )
+        (recurrent_block): ConvLSTM(
+          (Gates): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+      (2): RecurrentConvLayer(
+        (conv): ConvLayer(
+          (conv2d): Conv2d(128, 256, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2))
+        )
+        (recurrent_block): ConvLSTM(
+          (Gates): Conv2d(512, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+    )
+    (resblocks): ModuleList(
+      (0): ResidualBlock(
+        (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (1): ResidualBlock(
+        (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+    )
+    (decoders): ModuleList(
+      (0): UpsampleConvLayer(
+        (conv2d): Conv2d(256, 128, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+      )
+      (1): UpsampleConvLayer(
+        (conv2d): Conv2d(128, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+      )
+      (2): UpsampleConvLayer(
+        (conv2d): Conv2d(64, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+      )
+    )
+    (pred): ConvLayer(
+      (conv2d): Conv2d(32, 3, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+)
+Trainable parameters: 0
+sensor resolution = [180 240]
+Traceback (most recent call last):
+  File "/cluster/home/jzhong/miniconda3/envs/event_cnn/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/cluster/home/jzhong/miniconda3/envs/event_cnn/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/cluster/home/jzhong/miniconda3/envs/event_cnn/lib/python3.7/multiprocessing/connection.py", line 404, in _send_bytes
+    self._send(header + buf)
+  File "/cluster/home/jzhong/miniconda3/envs/event_cnn/lib/python3.7/multiprocessing/connection.py", line 368, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Saving to: /cluster/scratch/jzhong/event_cnn_recon_ori
+  0%|          | 0/723 [00:00<?, ?it/s]  0%|          | 1/723 [00:01<12:28,  1.04s/it]  1%|          | 7/723 [00:01<01:28,  8.06it/s]  2%|▏         | 13/723 [00:01<00:45, 15.65it/s]  3%|▎         | 19/723 [00:01<00:30, 23.07it/s]  3%|▎         | 24/723 [00:01<00:25, 27.42it/s]  4%|▍         | 29/723 [00:01<00:22, 31.48it/s]  5%|▍         | 34/723 [00:01<00:19, 35.15it/s]  6%|▌         | 40/723 [00:01<00:17, 38.48it/s]  6%|▌         | 45/723 [00:01<00:17, 38.71it/s]  7%|▋         | 50/723 [00:02<00:17, 38.48it/s]  8%|▊         | 55/723 [00:02<00:17, 38.23it/s]  8%|▊         | 60/723 [00:02<00:17, 37.61it/s]  9%|▉         | 64/723 [00:02<00:17, 37.10it/s] 10%|▉         | 69/723 [00:02<00:16, 39.16it/s] 10%|█         | 74/723 [00:02<00:17, 37.52it/s] 11%|█         | 78/723 [00:02<00:17, 37.25it/s] 11%|█▏        | 82/723 [00:02<00:17, 37.43it/s] 12%|█▏        | 87/723 [00:03<00:16, 38.94it/s] 13%|█▎        | 91/723 [00:03<00:16, 38.93it/s] 13%|█▎        | 95/723 [00:03<00:16, 38.55it/s] 14%|█▎        | 99/723 [00:03<00:17, 35.64it/s] 14%|█▍        | 104/723 [00:03<00:16, 38.42it/s] 15%|█▌        | 109/723 [00:03<00:15, 38.77it/s] 16%|█▌        | 113/723 [00:03<00:16, 36.89it/s] 16%|█▌        | 117/723 [00:03<00:16, 37.30it/s] 17%|█▋        | 121/723 [00:03<00:16, 37.09it/s] 17%|█▋        | 125/723 [00:04<00:16, 35.78it/s] 18%|█▊        | 130/723 [00:04<00:15, 38.89it/s] 19%|█▊        | 134/723 [00:04<00:16, 36.73it/s] 19%|█▉        | 139/723 [00:04<00:15, 38.64it/s] 20%|█▉        | 143/723 [00:04<00:16, 36.01it/s] 20%|██        | 147/723 [00:04<00:16, 34.38it/s] 21%|██        | 151/723 [00:04<00:16, 34.39it/s] 21%|██▏       | 155/723 [00:04<00:16, 33.79it/s] 22%|██▏       | 159/723 [00:05<00:16, 34.61it/s] 23%|██▎       | 163/723 [00:05<00:16, 34.81it/s] 23%|██▎       | 168/723 [00:05<00:15, 36.20it/s] 24%|██▍       | 172/723 [00:05<00:15, 36.39it/s] 24%|██▍       | 177/723 [00:05<00:14, 38.81it/s] 25%|██▌       | 181/723 [00:05<00:14, 37.74it/s] 26%|██▌       | 186/723 [00:05<00:14, 38.15it/s] 26%|██▋       | 190/723 [00:05<00:14, 37.12it/s] 27%|██▋       | 195/723 [00:05<00:13, 38.68it/s] 28%|██▊       | 199/723 [00:06<00:13, 37.59it/s] 28%|██▊       | 204/723 [00:06<00:13, 38.07it/s] 29%|██▉       | 209/723 [00:06<00:12, 40.19it/s] 30%|██▉       | 214/723 [00:06<00:14, 36.27it/s] 30%|███       | 219/723 [00:06<00:13, 36.45it/s] 31%|███       | 224/723 [00:06<00:13, 37.78it/s] 32%|███▏      | 228/723 [00:06<00:13, 36.17it/s] 32%|███▏      | 232/723 [00:06<00:13, 36.32it/s] 33%|███▎      | 236/723 [00:07<00:13, 36.33it/s] 33%|███▎      | 241/723 [00:07<00:12, 38.38it/s] 34%|███▍      | 245/723 [00:07<00:12, 38.79it/s] 34%|███▍      | 249/723 [00:07<00:12, 38.21it/s] 35%|███▍      | 253/723 [00:07<00:12, 37.25it/s] 36%|███▌      | 258/723 [00:07<00:12, 38.19it/s] 36%|███▋      | 263/723 [00:07<00:11, 40.04it/s] 37%|███▋      | 268/723 [00:07<00:11, 40.19it/s] 38%|███▊      | 273/723 [00:08<00:11, 37.51it/s] 38%|███▊      | 278/723 [00:08<00:11, 38.53it/s] 39%|███▉      | 282/723 [00:08<00:11, 38.26it/s] 40%|███▉      | 286/723 [00:08<00:11, 38.39it/s] 40%|████      | 290/723 [00:08<00:12, 33.42it/s] 41%|████      | 295/723 [00:08<00:12, 34.96it/s] 41%|████▏     | 299/723 [00:08<00:12, 33.81it/s] 42%|████▏     | 303/723 [00:08<00:12, 32.97it/s] 43%|████▎     | 308/723 [00:09<00:11, 35.78it/s] 43%|████▎     | 313/723 [00:09<00:11, 36.95it/s] 44%|████▍     | 318/723 [00:09<00:10, 37.39it/s] 45%|████▍     | 323/723 [00:09<00:10, 38.56it/s] 45%|████▌     | 327/723 [00:09<00:10, 37.80it/s] 46%|████▌     | 332/723 [00:09<00:10, 38.80it/s] 46%|████▋     | 336/723 [00:09<00:10, 37.79it/s] 47%|████▋     | 340/723 [00:09<00:10, 37.55it/s] 48%|████▊     | 344/723 [00:09<00:10, 37.55it/s] 48%|████▊     | 349/723 [00:10<00:09, 39.23it/s] 49%|████▉     | 353/723 [00:10<00:09, 37.93it/s] 49%|████▉     | 357/723 [00:10<00:09, 38.29it/s] 50%|████▉     | 361/723 [00:10<00:09, 37.49it/s] 50%|█████     | 365/723 [00:10<00:10, 35.57it/s] 51%|█████     | 370/723 [00:10<00:09, 37.81it/s] 52%|█████▏    | 374/723 [00:10<00:09, 36.98it/s] 52%|█████▏    | 378/723 [00:10<00:09, 35.53it/s] 53%|█████▎    | 382/723 [00:11<00:09, 36.65it/s] 53%|█████▎    | 386/723 [00:11<00:09, 36.39it/s] 54%|█████▍    | 391/723 [00:11<00:08, 37.63it/s] 55%|█████▍    | 395/723 [00:11<00:08, 37.27it/s] 55%|█████▌    | 399/723 [00:11<00:08, 37.81it/s] 56%|█████▌    | 403/723 [00:11<00:08, 35.99it/s] 56%|█████▋    | 408/723 [00:11<00:08, 37.93it/s] 57%|█████▋    | 412/723 [00:11<00:08, 36.61it/s] 58%|█████▊    | 417/723 [00:11<00:07, 39.00it/s] 58%|█████▊    | 421/723 [00:12<00:08, 36.85it/s] 59%|█████▉    | 426/723 [00:12<00:07, 38.70it/s] 60%|█████▉    | 432/723 [00:12<00:07, 41.41it/s] 60%|██████    | 437/723 [00:12<00:06, 41.36it/s] 61%|██████    | 442/723 [00:12<00:07, 36.49it/s] 62%|██████▏   | 446/723 [00:12<00:08, 34.07it/s] 62%|██████▏   | 450/723 [00:12<00:08, 33.84it/s] 63%|██████▎   | 454/723 [00:12<00:07, 34.83it/s] 63%|██████▎   | 459/723 [00:13<00:07, 37.37it/s] 64%|██████▍   | 463/723 [00:13<00:07, 35.93it/s] 65%|██████▍   | 468/723 [00:13<00:06, 37.26it/s] 65%|██████▌   | 472/723 [00:13<00:07, 35.66it/s] 66%|██████▌   | 476/723 [00:13<00:07, 34.02it/s] 66%|██████▋   | 480/723 [00:13<00:07, 32.73it/s] 67%|██████▋   | 484/723 [00:13<00:07, 33.15it/s] 67%|██████▋   | 488/723 [00:13<00:06, 33.95it/s] 68%|██████▊   | 492/723 [00:14<00:07, 32.29it/s] 69%|██████▊   | 496/723 [00:14<00:06, 33.35it/s] 69%|██████▉   | 500/723 [00:14<00:06, 33.86it/s] 70%|██████▉   | 504/723 [00:14<00:06, 34.45it/s] 70%|███████   | 509/723 [00:14<00:05, 36.02it/s] 71%|███████   | 514/723 [00:14<00:05, 36.50it/s] 72%|███████▏  | 519/723 [00:14<00:05, 39.46it/s] 72%|███████▏  | 523/723 [00:14<00:05, 37.90it/s] 73%|███████▎  | 527/723 [00:15<00:05, 37.20it/s] 74%|███████▎  | 532/723 [00:15<00:04, 39.01it/s] 74%|███████▍  | 537/723 [00:15<00:04, 39.85it/s] 75%|███████▍  | 541/723 [00:15<00:04, 38.85it/s] 76%|███████▌  | 547/723 [00:15<00:04, 42.80it/s] 76%|███████▋  | 552/723 [00:15<00:03, 44.00it/s] 77%|███████▋  | 557/723 [00:15<00:03, 45.61it/s] 78%|███████▊  | 563/723 [00:15<00:03, 48.09it/s] 79%|███████▊  | 568/723 [00:15<00:03, 46.68it/s] 79%|███████▉  | 573/723 [00:16<00:03, 46.70it/s] 80%|████████  | 579/723 [00:16<00:02, 48.85it/s] 81%|████████  | 585/723 [00:16<00:02, 51.60it/s] 82%|████████▏ | 591/723 [00:16<00:02, 51.05it/s] 83%|████████▎ | 597/723 [00:16<00:02, 53.36it/s] 83%|████████▎ | 603/723 [00:16<00:02, 52.36it/s] 84%|████████▍ | 609/723 [00:16<00:02, 52.28it/s] 85%|████████▌ | 615/723 [00:16<00:02, 53.19it/s] 86%|████████▌ | 621/723 [00:16<00:01, 52.87it/s] 87%|████████▋ | 627/723 [00:17<00:01, 52.56it/s] 88%|████████▊ | 633/723 [00:17<00:01, 52.92it/s] 88%|████████▊ | 639/723 [00:17<00:01, 53.78it/s] 89%|████████▉ | 645/723 [00:17<00:01, 52.50it/s] 90%|█████████ | 651/723 [00:17<00:01, 53.20it/s] 91%|█████████ | 657/723 [00:17<00:01, 54.33it/s] 92%|█████████▏| 663/723 [00:17<00:01, 53.52it/s] 93%|█████████▎| 669/723 [00:17<00:01, 53.52it/s] 93%|█████████▎| 675/723 [00:17<00:00, 54.12it/s] 94%|█████████▍| 681/723 [00:18<00:00, 53.89it/s] 95%|█████████▌| 687/723 [00:18<00:00, 53.65it/s] 96%|█████████▌| 693/723 [00:18<00:00, 53.72it/s] 97%|█████████▋| 699/723 [00:18<00:00, 53.28it/s] 98%|█████████▊| 705/723 [00:18<00:00, 54.40it/s] 98%|█████████▊| 711/723 [00:18<00:00, 54.33it/s] 99%|█████████▉| 717/723 [00:18<00:00, 53.41it/s]100%|██████████| 723/723 [00:18<00:00, 38.42it/s]
+== Timing statistics ==
+Inference: 8.18 ms (723 samples)

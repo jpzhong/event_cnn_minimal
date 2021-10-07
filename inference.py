@@ -70,7 +70,7 @@ def main(args, model):
     dataset_kwargs = {'transforms': {},
                       'max_length': None,
                       'sensor_resolution': None,
-                      'num_bins': 5,
+                      'num_bins': 10,
                       'filter_hot_events': args.filter_hot_events,
                       'voxel_method': {'method': args.voxel_method,
                                        'k': args.k,
@@ -178,4 +178,5 @@ if __name__ == '__main__':
     checkpoint = torch.load(args.checkpoint_path)
     args, checkpoint = legacy_compatibility(args, checkpoint)
     model = load_model(checkpoint)
+    print(model)
     main(args, model)

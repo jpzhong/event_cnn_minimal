@@ -1,0 +1,70 @@
+Sender: LSF System <lsfadmin@eu-g2-08>
+Subject: Job 187216606: <python inference.py --checkpoint_path pretrained/firenet/firenet_all_cts.pth --device 0 --events_file_path /cluster/scratch/jzhong/fr_dataset/val/desk_fast.h5 --output_folder /cluster/scratch/jzhong/event_cnn_recon> in cluster <euler> Done
+
+Job <python inference.py --checkpoint_path pretrained/firenet/firenet_all_cts.pth --device 0 --events_file_path /cluster/scratch/jzhong/fr_dataset/val/desk_fast.h5 --output_folder /cluster/scratch/jzhong/event_cnn_recon> was submitted from host <eu-login-27> by user <jzhong> in cluster <euler> at Wed Oct  6 18:19:06 2021
+Job was executed on host(s) <eu-g2-08>, in queue <gpu.4h>, as user <jzhong> in cluster <euler> at Wed Oct  6 18:19:39 2021
+</cluster/home/jzhong> was used as the home directory.
+</cluster/home/jzhong/event_cnn_minimal> was used as the working directory.
+Started at Wed Oct  6 18:19:39 2021
+Terminated at Wed Oct  6 18:20:09 2021
+Results reported at Wed Oct  6 18:20:09 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python inference.py --checkpoint_path pretrained/firenet/firenet_all_cts.pth --device 0 --events_file_path /cluster/scratch/jzhong/fr_dataset/val/desk_fast.h5 --output_folder /cluster/scratch/jzhong/event_cnn_recon
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   23.53 sec.
+    Max Memory :                                 3440 MB
+    Average Memory :                             400.00 MB
+    Total Requested Memory :                     20000.00 MB
+    Delta Memory :                               16560.00 MB
+    Max Swap :                                   -
+    Max Processes :                              3
+    Max Threads :                                4
+    Run time :                                   43 sec.
+    Turnaround time :                            63 sec.
+
+The output (if any) follows:
+
+Loading checkpoint: pretrained/firenet/firenet_all_cts.pth ...
+FireNet(
+  (head): ConvLayer(
+    (conv2d): Conv2d(5, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (G1): ConvGRU(
+    (reset_gate): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (update_gate): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (out_gate): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (R1): ResidualBlock(
+    (conv1): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (relu): ReLU(inplace=True)
+    (conv2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (G2): ConvGRU(
+    (reset_gate): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (update_gate): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (out_gate): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (R2): ResidualBlock(
+    (conv1): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (relu): ReLU(inplace=True)
+    (conv2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (pred): ConvLayer(
+    (conv2d): Conv2d(16, 1, kernel_size=(1, 1), stride=(1, 1))
+  )
+)
+Trainable parameters: 0
+sensor resolution = [180 240]
+Saving to: /cluster/scratch/jzhong/event_cnn_recon
+  0%|          | 0/723 [00:00<?, ?it/s]  0%|          | 1/723 [00:00<11:31,  1.04it/s]  2%|▏         | 15/723 [00:01<00:37, 18.92it/s]  3%|▎         | 23/723 [00:01<00:24, 28.32it/s]  4%|▍         | 31/723 [00:01<00:18, 36.75it/s]  5%|▌         | 39/723 [00:01<00:16, 42.44it/s]  6%|▋         | 46/723 [00:01<00:14, 45.37it/s]  7%|▋         | 53/723 [00:01<00:14, 46.57it/s]  8%|▊         | 59/723 [00:01<00:13, 48.51it/s]  9%|▉         | 65/723 [00:01<00:13, 48.29it/s] 10%|▉         | 71/723 [00:02<00:13, 47.75it/s] 11%|█         | 77/723 [00:02<00:13, 47.12it/s] 11%|█▏        | 83/723 [00:02<00:13, 49.17it/s] 12%|█▏        | 89/723 [00:02<00:12, 51.44it/s] 13%|█▎        | 95/723 [00:02<00:12, 49.56it/s] 14%|█▍        | 101/723 [00:02<00:12, 50.04it/s] 15%|█▍        | 107/723 [00:02<00:12, 51.29it/s] 16%|█▌        | 113/723 [00:02<00:12, 49.90it/s] 16%|█▋        | 119/723 [00:02<00:11, 50.91it/s] 17%|█▋        | 125/723 [00:03<00:11, 50.34it/s] 18%|█▊        | 132/723 [00:03<00:10, 53.73it/s] 19%|█▉        | 138/723 [00:03<00:11, 52.58it/s] 20%|█▉        | 144/723 [00:03<00:12, 47.60it/s] 21%|██        | 149/723 [00:03<00:12, 44.95it/s] 21%|██▏       | 154/723 [00:03<00:13, 43.29it/s] 22%|██▏       | 159/723 [00:03<00:12, 44.84it/s] 23%|██▎       | 165/723 [00:03<00:11, 46.50it/s] 24%|██▎       | 170/723 [00:04<00:11, 46.51it/s] 24%|██▍       | 175/723 [00:04<00:11, 46.53it/s] 25%|██▌       | 181/723 [00:04<00:11, 47.89it/s] 26%|██▌       | 187/723 [00:04<00:10, 50.36it/s] 27%|██▋       | 193/723 [00:04<00:10, 51.71it/s] 28%|██▊       | 200/723 [00:04<00:09, 54.72it/s] 28%|██▊       | 206/723 [00:04<00:09, 54.64it/s] 29%|██▉       | 212/723 [00:04<00:09, 52.23it/s] 30%|███       | 218/723 [00:05<00:09, 51.04it/s] 31%|███       | 224/723 [00:05<00:09, 52.11it/s] 32%|███▏      | 230/723 [00:05<00:09, 49.84it/s] 33%|███▎      | 236/723 [00:05<00:09, 52.07it/s] 34%|███▎      | 243/723 [00:05<00:08, 55.05it/s] 34%|███▍      | 249/723 [00:05<00:08, 54.56it/s] 35%|███▌      | 255/723 [00:05<00:08, 54.94it/s] 36%|███▌      | 262/723 [00:05<00:08, 57.24it/s] 37%|███▋      | 269/723 [00:05<00:07, 58.85it/s] 38%|███▊      | 275/723 [00:06<00:07, 56.25it/s] 39%|███▉      | 281/723 [00:06<00:08, 53.60it/s] 40%|███▉      | 287/723 [00:06<00:08, 52.36it/s] 41%|████      | 293/723 [00:06<00:09, 46.87it/s] 41%|████      | 298/723 [00:06<00:09, 43.39it/s] 42%|████▏     | 303/723 [00:06<00:09, 43.10it/s] 43%|████▎     | 309/723 [00:06<00:08, 46.85it/s] 44%|████▎     | 315/723 [00:06<00:08, 47.86it/s] 44%|████▍     | 320/723 [00:07<00:08, 46.48it/s] 45%|████▌     | 326/723 [00:07<00:07, 49.74it/s] 46%|████▌     | 333/723 [00:07<00:07, 53.49it/s] 47%|████▋     | 339/723 [00:07<00:07, 54.75it/s] 48%|████▊     | 345/723 [00:07<00:06, 54.27it/s] 49%|████▊     | 351/723 [00:07<00:06, 53.45it/s] 49%|████▉     | 357/723 [00:07<00:06, 53.75it/s] 50%|█████     | 363/723 [00:07<00:07, 50.16it/s] 51%|█████     | 370/723 [00:07<00:06, 55.36it/s] 52%|█████▏    | 376/723 [00:08<00:06, 55.98it/s] 53%|█████▎    | 382/723 [00:08<00:06, 54.75it/s] 54%|█████▍    | 389/723 [00:08<00:05, 57.75it/s] 55%|█████▍    | 395/723 [00:08<00:05, 58.04it/s] 55%|█████▌    | 401/723 [00:08<00:05, 57.46it/s] 56%|█████▋    | 408/723 [00:08<00:05, 59.02it/s] 57%|█████▋    | 415/723 [00:08<00:05, 60.07it/s] 58%|█████▊    | 422/723 [00:08<00:05, 54.38it/s] 60%|█████▉    | 432/723 [00:08<00:04, 64.67it/s] 61%|██████    | 439/723 [00:09<00:04, 63.60it/s] 62%|██████▏   | 446/723 [00:09<00:04, 57.89it/s] 63%|██████▎   | 452/723 [00:09<00:04, 55.01it/s] 63%|██████▎   | 458/723 [00:09<00:04, 55.62it/s] 64%|██████▍   | 465/723 [00:09<00:04, 58.03it/s] 65%|██████▌   | 471/723 [00:09<00:04, 53.52it/s] 66%|██████▌   | 477/723 [00:09<00:04, 52.27it/s] 67%|██████▋   | 483/723 [00:09<00:04, 50.79it/s] 68%|██████▊   | 489/723 [00:10<00:04, 50.42it/s] 68%|██████▊   | 495/723 [00:10<00:04, 48.91it/s] 69%|██████▉   | 502/723 [00:10<00:04, 53.60it/s] 70%|███████   | 509/723 [00:10<00:03, 56.48it/s] 71%|███████▏  | 516/723 [00:10<00:03, 59.30it/s] 72%|███████▏  | 523/723 [00:10<00:03, 58.80it/s] 73%|███████▎  | 529/723 [00:10<00:03, 57.74it/s] 74%|███████▍  | 536/723 [00:10<00:03, 60.80it/s] 75%|███████▌  | 543/723 [00:10<00:02, 62.53it/s] 76%|███████▋  | 552/723 [00:11<00:02, 68.21it/s] 78%|███████▊  | 561/723 [00:11<00:02, 71.92it/s] 79%|███████▊  | 569/723 [00:11<00:02, 73.79it/s] 80%|███████▉  | 577/723 [00:11<00:01, 73.79it/s] 81%|████████  | 587/723 [00:11<00:01, 80.93it/s] 83%|████████▎ | 600/723 [00:11<00:01, 93.21it/s] 85%|████████▍ | 613/723 [00:11<00:01, 102.59it/s] 87%|████████▋ | 626/723 [00:11<00:00, 108.91it/s] 89%|████████▊ | 640/723 [00:11<00:00, 115.78it/s] 90%|█████████ | 653/723 [00:12<00:00, 118.95it/s] 92%|█████████▏| 666/723 [00:12<00:00, 120.79it/s] 94%|█████████▍| 680/723 [00:12<00:00, 125.60it/s] 96%|█████████▌| 693/723 [00:12<00:00, 126.73it/s] 98%|█████████▊| 706/723 [00:12<00:00, 126.18it/s]100%|█████████▉| 720/723 [00:12<00:00, 128.34it/s]100%|██████████| 723/723 [00:12<00:00, 57.52it/s] 
+== Timing statistics ==
+Inference: 3.04 ms (723 samples)

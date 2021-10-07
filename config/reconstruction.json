@@ -5,7 +5,7 @@
         "type": "E2VIDRecurrent",
         "args": {
             "unet_kwargs": {
-                "num_bins": 10,
+                "num_bins": 5,
                 "skip_type": "sum",
                 "recurrent_block_type": "convlstm",
                 "num_encoders": 3,
@@ -20,14 +20,14 @@
     "data_loader": {
         "type": "HDF5DataLoader",
         "args": {
-            "data_file": "/path/to/dataset",
+            "data_file": "/cluster/scratch/jzhong/fr_dataset/train_single.csv",
             "batch_size": 2,
             "shuffle": true,
             "num_workers": 0,
             "pin_memory": true,
             "sequence_kwargs": {
                 "sequence_length": 40,
-                "dataset_type": "HDF5Dataset",
+                "dataset_type": "DynamicH5Dataset",
                 "proba_pause_when_running": 0.05,
                 "proba_pause_when_paused": 0.9,
                 "normalize_image": false,
@@ -46,7 +46,7 @@
                         },
                         "RandomFlip": {}
                     },
-                    "num_bins": 5
+                    "num_bins": 10
                 }
             }
         }
@@ -54,14 +54,14 @@
     "valid_data_loader": {
         "type": "HDF5DataLoader",
         "args": {
-            "data_file": "/path/to/validation_dataset",
+            "data_file": "/cluster/scratch/jzhong/fr_dataset/valid_single.csv",
             "batch_size": 1,
             "shuffle": false,
             "num_workers": 0,
             "pin_memory": true,
             "sequence_kwargs": {
                 "sequence_length": 320,
-                "dataset_type": "HDF5Dataset",
+                "dataset_type": "DynamicH5Dataset",
                 "normalize_image": true,
                 "dataset_kwargs": {
                     "max_length": 320,
@@ -70,7 +70,7 @@
                             "size": 160
                         }
                     },
-                    "num_bins": 5,
+                    "num_bins": 10,
                     "combined_voxel_channels": false
                 }
             }
@@ -103,7 +103,7 @@
     },
     "trainer": {
         "epochs": 200,
-        "save_dir": "/model/save/path",
+        "save_dir": "/cluster/scratch/jzhong/event_cnn",
         "save_period": 5,
         "verbosity": 2,
         "monitor": "min loss",
