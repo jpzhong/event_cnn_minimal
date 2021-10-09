@@ -1,0 +1,109 @@
+{
+    "name": "reconstruction",
+    "n_gpu": 1,
+    "arch": {
+        "type": "FireNet",
+        "args": {
+            "unet_kwargs": {
+                "num_bins": 5,
+                "num_encoders": 3,
+                "kernel_size": 3,
+                "base_num_channels": 16
+            }
+        }
+    },
+    "data_loader": {
+        "type": "HDF5DataLoader",
+        "args": {
+            "data_file": "/cluster/scratch/jzhong/fr_dataset/train_full.csv",
+            "batch_size": 2,
+            "shuffle": true,
+            "num_workers": 0,
+            "pin_memory": true,
+            "sequence_kwargs": {
+                "sequence_length": 40,
+                "dataset_type": "DynamicH5Dataset",
+                "proba_pause_when_running": 0.05,
+                "proba_pause_when_paused": 0.9,
+                "normalize_image": false,
+                "noise_kwargs": {
+                    "noise_std":0.1,
+                    "noise_fraction": 1.0
+                },
+                "hot_pixel_kwargs": {
+                    "hot_pixel_std": 0.1,
+                    "max_hot_pixel_fraction": 0.001
+                },
+                "dataset_kwargs": {
+                    "transforms": {
+                        "RandomCrop": {
+                            "size": [112, 112]
+                        },
+                        "RandomFlip": {}
+                    },
+                    "num_bins": 5
+                }
+            }
+        }
+    },
+    "valid_data_loader": {
+        "type": "HDF5DataLoader",
+        "args": {
+            "data_file": "/cluster/scratch/jzhong/fr_dataset/valid_full.csv",
+            "batch_size": 2,
+            "shuffle": false,
+            "num_workers": 0,
+            "pin_memory": true,
+            "sequence_kwargs": {
+                "sequence_length": 320,
+                "dataset_type": "DynamicH5Dataset",
+                "normalize_image": true,
+                "dataset_kwargs": {
+                    "max_length": 320,
+                    "transforms": {
+                        "CenterCrop": {
+                            "size": [160, 160]
+                        }
+                    },
+                    "num_bins": 5,
+                    "combined_voxel_channels": true
+                }
+            }
+        }
+    },
+    "optimizer": {
+        "type": "Adam",
+        "args": {
+            "lr": 0.01,
+            "weight_decay": 0,
+            "amsgrad": true
+        }
+    },
+    "loss_ftns": {
+        "perceptual_loss": {
+            "weight": 1.0,
+            "net": "vgg"
+        },
+        "temporal_consistency_loss": {
+            "L0": 2,
+            "weight": 2.0
+        }
+    },
+    "lr_scheduler": {
+        "type": "StepLR",
+        "args": {
+            "step_size": 50,
+            "gamma": 1.0
+        }
+    },
+    "trainer": {
+        "epochs": 200,
+        "save_dir": "/cluster/scratch/jzhong/event_cnn_fire",
+        "save_period": 10,
+        "verbosity": 2,
+        "monitor": "min loss",
+        "num_previews": 3,
+        "val_num_previews": 3,
+        "tensorboard": true
+    }
+}
